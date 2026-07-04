@@ -5,23 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JEAB Company - Técnicos e Ingenieros Eléctricos</title>
     
-    @if(config('app.env') === 'production' || isset($_SERVER['HTTPS']))
-        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
-        <script mimeType="application/javascript" src="{{ asset('build/assets/app.js') }}" defer></script>
-    @else
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <style>
-        /* Hace que el desplazamiento al hacer clic en enlaces sea fluido */
         html { scroll-behavior: smooth; }
-        
-        /* Clase para el logo de fondo con marca de agua */
         .fondo-logo {
-            background-image: url('img/logo.png'); /* Ruta a tu logo */
-            background-size: 100% auto;           /* Ajusta el ancho al 100% */
-            background-repeat: no-repeat;        /* Evita que el logo se repita */
-            background-position: center;         /* Centra el logo en la pantalla */
+            background-image: url('img/logo.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
         }
     </style>
 </head>
