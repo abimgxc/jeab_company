@@ -20,9 +20,14 @@ use App\Http\Controllers\TestimoniosController;
 // =========================================================================
 
 Route::get('/', function () {
+    // TRUCO TEMPORAL PARA FORZAR MIGRACIONES EN RENDER FREE
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+    } catch(\Exception $e) {}
+
     // Inyección dinámica de datos en la Landing Page Principal
     $servicios = Servicio::all();
-    $indicadores = Indicador::all(); // CORREGIDO: Cambiado de Indicator a Indicador
+    $indicadores = Indicador::all();
     return view('inicio', compact('servicios', 'indicadores'));
 })->name('inicio');
 
