@@ -2,6 +2,7 @@
 
 use App\Models\Servicio;
 use App\Models\Indicador;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
@@ -14,7 +15,16 @@ use App\Http\Controllers\TestimoniosController;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
+Route::get('/instalar-servicios', function () {
+    // Ejecuta la migración fresca y el seeder a la fuerza
+    Artisan::call('migrate:fresh', [
+        '--force' => true,
+        '--seed' => true,
+        '--seeder' => 'CompanySeeder'
+    ]);
+    
+    return '¡Magia pura! Base de datos migrada y servicios creados con éxito.';
+});
 // =========================================================================
 // 1. SITIO WEB CORPORATIVO & PORTAFOLIO (Rutas Públicas)
 // =========================================================================
