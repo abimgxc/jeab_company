@@ -11,13 +11,14 @@ RUN mkdir -p /var/www/html/storage/framework/views \
     && touch /var/www/html/database/database.sqlite \
     && chmod -R 777 /var/www/html/storage /var/www/html/database
 
-# 2. Crear un script automático para que Render migre y ejecute el Seeder
+# 2. Crear un script automático (AHORA ENTRA A LA CARPETA CORRECTA)
 RUN echo '#!/bin/bash' > /var/www/html/scripts/00-setup.sh \
+    && echo 'cd /var/www/html' >> /var/www/html/scripts/00-setup.sh \
     && echo 'php artisan migrate --force' >> /var/www/html/scripts/00-setup.sh \
     && echo 'php artisan db:seed --force' >> /var/www/html/scripts/00-setup.sh \
     && chmod +x /var/www/html/scripts/00-setup.sh
 
-# 3. Variables de entorno (RUN_SCRIPTS=1 es lo que activa la magia)
+# 3. Variables de entorno
 ENV WEBROOT /var/www/html/public
 ENV APP_ENV production
 ENV RE_RUN_COMPOSER true
