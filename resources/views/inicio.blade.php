@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JEAB Company - Técnicos e Ingenieros Eléctricos</title>
     
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+<script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         html { scroll-behavior: smooth; }
