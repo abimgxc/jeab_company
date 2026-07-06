@@ -11,14 +11,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Crear usuario Admin (Emilio)
-        User::firstOrCreate(
-            ['email' => 'emilio@test.local'],
-            [
-                'name' => 'Emilio',
-                'password' => Hash::make('password123'),
-                'role' => 'admin',
-            ]
-        );
+        User::factory()->create([
+    'name' => 'Test User',
+    'email' => 'test@example.com',
+    'password' => Hash::make('12345678'), // <-- AGREGA ESTA LÍNEA AQUÍ
+]);
 
         // 2. LLAMAR A TU NUEVO SEEDER DE SERVICIOS E INDICADORES:
         $this->call(CompanySeeder::class);
