@@ -4,24 +4,20 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // 1. Crear el usuario de prueba (opcional, puedes dejarlo o borrarlo)
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
-        // 2. LLAMAR A TU COMPANYSEEDER
-        // Aquí es donde vinculas tu archivo de servicios con la base de datos
-        $this->call([
-            CompanySeeder::class,
-        ]);
+        // Esto creará a Emilio automáticamente si no existe
+        User::firstOrCreate(
+            ['email' => 'emilio@test.local'], // Si ya existe este correo, no lo duplica
+            [
+                'name' => 'Emilio',
+                'password' => Hash::make('password123'), // Tu contraseña segura
+                'role' => 'admin',
+            ]
+        );
     }
 }
