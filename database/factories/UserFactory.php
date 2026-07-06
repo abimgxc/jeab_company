@@ -11,15 +11,14 @@ class UserFactory extends Factory
 {
     protected static ?string $password;
 
-    public function definition(): array
-    {
-        // NO USAMOS FAKER AQUÍ para evitar errores de dependencia
-        return [
-            'name' => 'Administrador',
-            'email' => 'admin@proyecto.com',
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-        ];
-    }
+   public function definition(): array
+{
+    return [
+        'name' => $this->faker->name(),
+        'email' => $this->faker->unique()->safeEmail(),
+        'email_verified_at' => now(),
+        'password' => static::$password ??= Hash::make('password'),
+        'remember_token' => Str::random(10),
+    ];
+}
 }
