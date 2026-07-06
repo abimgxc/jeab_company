@@ -3,26 +3,18 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
-    protected static ?string $password;
-
     public function definition(): array
     {
         return [
-            // Usa SIEMPRE $this->faker. 
-            // Laravel ya lo inyecta automáticamente en la clase Factory base.
+            // Laravel inyecta automáticamente el objeto 'faker'
             'name' => $this->faker->name(), 
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // 'password'
+            'remember_token' => \Illuminate\Support\Str::random(10),
         ];
     }
 }
