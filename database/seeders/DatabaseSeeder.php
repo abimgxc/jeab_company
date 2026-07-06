@@ -10,14 +10,16 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Crear usuario Admin (Emilio)
-        User::factory()->create([
-    'name' => 'Test User',
-    'email' => 'test@example.com',
-    'password' => Hash::make('12345678'), // <-- AGREGA ESTA LÍNEA AQUÍ
-]);
+        // Usamos updateOrCreate para evitar errores si el usuario ya existe
+        User::updateOrCreate(
+            ['email' => 'test@example.com'], // Buscamos por email
+            [
+                'name' => 'Test User',
+                'password' => Hash::make('12345678'),
+            ]
+        );
 
-        // 2. LLAMAR A TU NUEVO SEEDER DE SERVICIOS E INDICADORES:
+        // Llamamos a tu otro seeder
         $this->call(CompanySeeder::class);
     }
 }
